@@ -36,6 +36,7 @@ def home():
 @app.route("/predict",methods = ["POST"])
 def predict():
         data = req.get_json()
+        print(data)
         features = data.get("features")
         if not features:
                 return json({"error": "Missing 'features' key in request body"}), 400
