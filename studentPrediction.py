@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import pickle
 
+
 def load_model():
         with open("student_lr_final_model.pkl",'rb') as file:
                 model,scaler,label = pickle.load(file)
@@ -23,9 +24,14 @@ def predict_data(data):
 
 #----------------api part-------------------------------------
 from flask import Flask, request as req, jsonify as json 
+from flask_cors import CORS
 
 # making flask api for our nextJs application
 app = Flask(__name__)
+CORS(app, origins=["https://studentprediction-ml.onrender.com"])
+@app.route("/")
+def home():
+        return "Hello World"
 
 @app.route("/predict",methods = ["POST"])
 def predict():
@@ -39,4 +45,4 @@ def predict():
         return json({"prediction":prediction.tolist()})
 
 if __name__ == "__main__": # this ensures the file.py will not run indirectly from other script
-        app.run(port=8090,debug=True)
+        app.run(debug=True)
