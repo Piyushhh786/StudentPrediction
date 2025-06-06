@@ -28,7 +28,7 @@ from flask_cors import CORS
 
 # making flask api for our nextJs application
 app = Flask(__name__)
-CORS(app, origins=["https://studentprediction-ml.onrender.com"])
+CORS(app)
 @app.route("/")
 def home():
         return "Hello World"
