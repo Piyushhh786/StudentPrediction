@@ -42,6 +42,8 @@ def predict():
                 return json({"error": "Missing 'features' key in request body"}), 400
         # print(f"data: {features}")
         prediction = predict_data(features)
+        if prediction > 100 : prediction = 100
+        if prediction < 0 : prediction = 0
         print(f"pridiction: {prediction}")
         return json({"prediction":prediction.tolist()})
 
